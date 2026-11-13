@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svashasan Labs × STPI | Incubation &amp; Engineering Strategy</title>
+    <meta name="robots" content="noindex, nofollow">
+     <link rel="icon" type="image/png" href="2.png" sizes="32x32">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N89XZGM4');</script>
+<!-- End Google Tag Manager -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
+                        calibri: ['Calibri', 'sans-serif'],
+                    },
+                    colors: {
+                        brandBlack: '#0B0B0B',
+                        brandCharcoal: '#1A1A1A',
+                        mutedText: '#666666',
+                        metaText: '#8A8A8A',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Mobile menu animation styles */
+        #mobile-menu {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.35s ease-out, transform 0.35s ease-out, visibility 0s linear 0.35s;
+            display: flex;
+        }
+
+        #mobile-menu.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            transition: opacity 0.35s ease-out, transform 0.35s ease-out, visibility 0s linear 0s;
+        }
+
+        #mobile-menu ul li {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        #mobile-menu.active ul li {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #mobile-menu.active ul li:nth-child(1) { transition-delay: 0.05s; }
+        #mobile-menu.active ul li:nth-child(2) { transition-delay: 0.10s; }
+        #mobile-menu.active ul li:nth-child(3) { transition-delay: 0.15s; }
+        #mobile-menu.active ul li:nth-child(4) { transition-delay: 0.20s; }
+        #mobile-menu.active ul li:nth-child(5) { transition-delay: 0.25s; }
+        #mobile-menu.active ul li:nth-child(6) { transition-delay: 0.30s; }
+        #mobile-menu.active ul li:nth-child(7) { transition-delay: 0.35s; }
+
+        #menu-button {
+            align-items: center;
+            justify-content: center;
+        }
+
+        #menu-open-icon {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        #menu-button.active #menu-open-icon {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        #menu-close-icon {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        #menu-button.active #menu-close-icon {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0 !important;
+            }
+
+            header .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #mobile-menu {
+                padding-top: 5rem;
+                padding-bottom: 2rem;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #mobile-menu ul {
+                gap: 1.75rem !important;
+            }
+
+            #mobile-menu a {
+                font-size: 1.5rem !important;
+            }
+        }
+
+@media (max-width: 480px) {
+            header .container {
+                gap: 0.5rem;
+            }
+
+            .header-right-group a svg,
+            .header-right-group button svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            #mobile-menu {
+                padding-top: 4.5rem;
+            }
+
+            #mobile-menu ul {
+                gap: 1.5rem !important;
+            }
+
+            #mobile-menu a {
+                font-size: 1.25rem !important;
+            }
+        }
+
+        /* Navigation sidebar link styles */
+        .nav-link {
+            outline: none;
+            text-decoration: none;
+        }
+        .nav-link:focus-visible {
+            outline: none;
+        }
+        .nav-link.active,
+        .nav-link:hover {
+            background-color: rgba(0,0,0,0.04);
+            box-shadow: 0 0 12px rgba(0,0,0,0.12);
+            transition: background-color 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <link rel="stylesheet" href="/global-loader.css">
+    <script src="/global-loader.js"></script>
+    <style>
+        :root {
+            --paper: #fffdf7;
+            --line: #d9d2c5;
+            --muted: #5c574e;
+            --ink: #161513;
+        }
+
+        h1, h2, h3 {
+            scroll-margin-top: 6rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white min-h-screen flex flex-col">
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N89XZGM4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <!-- Header Section -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 backdrop-blur-md py-4 shadow-sm">
+        <div class="container mx-auto flex items-center justify-between px-4 sm:px-6 gap-4">
+            <!-- Logo -->
+            <a href="https://svashasan.com/" class="flex-shrink-0">
+                <img src="2.png" alt="Svashasan Logo" class="h-10 w-auto object-contain">
+            </a>
+            <!-- Search Bar -->
+            <div class="relative flex items-center">
+                <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                <input id="search-input" type="text" placeholder="Search research..." oninput="handleGlobalSearch(this.value)" class="w-36 sm:w-44 focus:w-40 sm:focus:w-56 pl-8 pr-3 py-1.5 bg-gray-50 border border-transparent focus:bg-white focus:border-gray-300 rounded-full text-xs transition-all duration-300 outline-none text-brandBlack">
+                <div id="search-results" class="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden hidden z-50 max-h-60 overflow-y-auto"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 min-h-0">
+    <!-- Left navigation sidebar -->
+    <nav id="toc" class="hidden md:block sticky top-20 w-64 px-4 py-6 bg-white/80 backdrop-blur-md max-h-[calc(100vh-5rem)] overflow-y-auto transition-all duration-300 ease-out self-start" aria-label="Table of contents">
+<ul class="space-y-2 text-sm">
+<li><a href="#svashasan-labs-stpi" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">Svashasan Labs × STPI</a></li>
+<li><a href="#overview" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">1. Executive overview</a></li>
+<li><a href="#stpi" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">2. What exactly is STPI?</a></li>
+<li><a href="#motion" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">3. MOTION – ACES Mobility CoE, Pune</a></li>
+<li><a href="#labs" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">4. Laboratory infrastructure</a></li>
+<li><a href="#software" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">5. Software and engineering resources</a></li>
+<li><a href="#support" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">6. What MOTION may provide beyond lab access</a></li>
+<li><a href="#partners" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">7. Industry and institutional partner ecosystem</a></li>
+<li><a href="#eligibility" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">8. Eligibility and commercial terms</a></li>
+<li><a href="#funding" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">9. Funding opportunities through STPI</a></li>
+<li><a href="#roadmap" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">10. Proposed Svashasan–MOTION development roadmap</a></li>
+<li><a href="#compliance" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">11. Standards and compliance roadmap</a></li>
+<li><a href="#costs" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">12. Cost and access model</a></li>
+<li><a href="#apply" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">13. How to apply to MOTION</a></li>
+<li><a href="#positioning" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">14. How Svashasan should position itself</a></li>
+<li><a href="#other-centres" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">15. Other STPI centres worth knowing</a></li>
+<li><a href="#assessment" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">16. Strategic assessment and immediate action plan</a></li>
+<li><a href="#sources" class="nav-link block px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100 hover:shadow-[0_0_8px_rgba(0,0,0,0.15)] transition-all duration-300">17. Official resources and verification</a></li>
+</ul>
+    </nav>
+
+    <main class="flex-grow pt-24 px-4 md:px-6">
+        <div class="container mx-auto max-w-4xl text-gray-700">
+<h1 id="svashasan-labs-stpi" class="text-[22px] font-bold text-gray-800 text-center mb-4 mt-10 flex items-center justify-center gap-2 flex-wrap"><img src="2.png" alt="Svashasan Logo" class="h-8 w-auto" onerror="this.style.display='none'"><span>Svashasan Labs</span><span class="separator" style="border-left:1px solid currentColor;height:1em;margin:0 0.5rem;"></span><img src="stpi.png" alt="STPI" class="h-11 w-auto" onerror="this.style.display='none'"><span>STPI</span></h1>
+<h2 id="stpi-coe-motion-lab-strategic-guide" class="text-[18px] font-semibold text-gray-800 text-center mb-8 mt-0">STPI CoE &amp; MOTION Lab: A strategic guide for Svashasan Labs</h2>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Strategic research briefing · India · November 2026</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">How to use the Software Technology Parks of India ecosystem to move Svashasan OS from a CARLA/ROS 2 simulation MVP towards an automotive-compute demonstrator, OEM evaluation and product validation.</p>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Primary target: MOTION Pune</strong> · ACES mobility · Incubation · labs · industry access</p>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Research briefing for internal strategy and application preparation. Verify current programme terms directly with STPI before making commitments.</em></p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="overview" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">1. Executive overview</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Recommendation</em></p>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Recommendation:</strong> Svashasan Labs should actively explore STPI's MOTION – ACES Mobility Centre of Entrepreneurship in Pune. Its automotive and mobility focus makes it more directly relevant than a generic startup incubator.</blockquote>
+<p class="text-[16px] mb-4 leading-relaxed">STPI is not one central laboratory. It operates a network of Centres of Entrepreneurship (CoEs), each with different technology specialisations, facilities, partners, selection processes and commercial terms. The objective should be to identify the centre that can help Svashasan progress from simulation to physical automotive compute integration and OEM-evaluable validation.</p>
+<h2 id="primary-objective-hardware-demonstrator" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Primary objective: Hardware demonstrator</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Deploy Svashasan OS and autonomy workloads on automotive-grade development compute.</p>
+<h2 id="second-objective-industry-credibility" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Second objective: Industry credibility</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Build relationships with OEMs, Tier 1 suppliers, testing organisations and engineering partners.</p>
+<h2 id="third-objective-capital-efficiency" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Third objective: Capital efficiency</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Access expensive lab equipment before committing company capital to purchasing it.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="stpi" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">2. What exactly is STPI?</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Institution</em></p>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Software Technology Parks of India (STPI)</strong> is an autonomous society under the Ministry of Electronics and Information Technology (MeitY), Government of India. Established in 1991, it promotes technology entrepreneurship, software product development, R&amp;D, innovation and intellectual property creation.</p>
+<p class="text-[16px] mb-4 leading-relaxed"><a href="https://stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">Official STPI website</a></p>
+<h2 id="centres-of-entrepreneurship" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Centres of Entrepreneurship</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Domain-specific incubation, specialised laboratories, mentorship and industry engagement.</p>
+<h2 id="ngis" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">NGIS</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Next Generation Incubation Scheme: incubation and financial support for selected software product startups.</p>
+<h2 id="stpi-labs-network" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">STPI Labs Network</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Specialised equipment and facilities for prototyping, testing and product development.</p>
+<p class="text-[16px] mb-4 leading-relaxed">STPI's support model can span ideation, prototyping, MVP development, testing and commercialisation. Actual facilities, eligibility and benefits differ by centre and programme.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="motion" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">3. MOTION – ACES Mobility CoE, Pune</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Primary target · Highest strategic relevance for Svashasan</em></p>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>MOTION</strong> is STPI's Centre of Entrepreneurship focused on Autonomous, Connected, Electric and Shared mobility (ACES). It is based in Pune and was established with government and industry ecosystem participation to support mobility innovation, R&amp;D, product development, incubation and commercialisation.</p>
+<p class="text-[16px] mb-4 leading-relaxed">Its published focus areas include:</p>
+<h2 id="autonomous-vehicles" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Autonomous vehicles</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Perception, sensor integration, vehicle intelligence and autonomy technology.</p>
+<h2 id="electric-vehicles" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Electric vehicles</h2>
+<p class="text-[16px] mb-4 leading-relaxed">EV systems, battery technology, power electronics and charging.</p>
+<h2 id="connected-vehicles" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Connected vehicles</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Vehicle connectivity, communications, telematics and connected services.</p>
+<h2 id="shared-mobility" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Shared mobility</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Technology supporting shared and next-generation mobility services.</p>
+<h2 id="why-svashasan-fits" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Why Svashasan fits</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Svashasan module</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">MOTION relevance</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Vehicle OS and embedded Linux</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Connected vehicle technology and embedded systems</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Perception and sensor fusion</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Autonomous vehicles</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Prediction and planning</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Autonomous vehicles</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Vehicle communication and telematics</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Connected vehicles</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">OTA architecture</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Connected vehicles and software updates</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">EV powertrain interfaces</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electric vehicle systems</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">BMS and energy orchestration</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">EV and battery technology</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">V2X</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Connected and shared mobility</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed">This is a strong product-domain fit: MOTION's mobility focus overlaps with the core engineering problem Svashasan is solving.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="labs" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">4. Laboratory infrastructure</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Physical infrastructure</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">The MOTION laboratory inventory describes equipment across autonomous vehicles, electric vehicles, mobility electronics and prototyping. The items below are published inventory references; confirm current availability, model, access rights, compatibility, booking and charges directly with the centre.</p>
+<h2 id="a-autonomous-vehicle-laboratory" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">A. Autonomous vehicle laboratory</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Equipment / platform</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential Svashasan application</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">NVIDIA DRIVE AGX development platform</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Deploy and benchmark autonomy workloads on automotive compute.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">RADAR sensors and development kit</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Radar processing, object tracking and sensor fusion.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">LiDAR development kit</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">3D perception, mapping and obstacle detection.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Stereo and mono cameras</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Camera perception, calibration and image pipelines.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">IMU + GNSS / REACH RS+ survey kit</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Localization, positioning and sensor calibration.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive connectivity development platform</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Connected-vehicle integration and communications.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">IoT and robotics development boards</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Embedded prototyping and interface development.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Ultrasonic sensors</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Parking and short-range obstacle detection.</td></tr></tbody></table></div>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Priority request:</strong> NVIDIA DRIVE AGX access, camera, radar, LiDAR and IMU/GNSS equipment. Confirm the exact DRIVE hardware generation, SDK/toolchain version, user access and whether deployment of third-party software is permitted.</blockquote>
+<h2 id="b-electric-vehicle-laboratory" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">B. Electric vehicle laboratory</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Equipment</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential application</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Three-phase BLDC motor development kit</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Motor-control integration and prototyping.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Motor Control Evaluation Module</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Powertrain control prototyping.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Dyno setup up to 50 kW</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Motor performance testing.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">High-voltage power supplies</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Power electronics testing.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electrical safety analyser</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electrical safety measurements.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">AC and DC EV chargers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Charging infrastructure integration.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electronic load</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Power-system testing.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Power meter and analyser</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Energy and electrical measurement.</td></tr></tbody></table></div>
+<h2 id="c-mobility-electronics-and-prototyping-laboratory" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">C. Mobility electronics and prototyping laboratory</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Equipment</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential application</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Oscilloscopes, including high-bandwidth instruments</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Signal integrity and embedded hardware debugging.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Logic analysers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Digital bus and interface debugging.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Spectrum analysers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">RF and communications investigation.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Function and waveform generators</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Signal injection and test setup.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Data loggers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Time-series and system measurement.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Thermal imaging cameras</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Thermal diagnostics.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">PCB prototyping machines</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electronics prototyping.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Professional soldering equipment</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Board assembly and rework.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">3D prototype printers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Enclosures, mounts and mechanical prototypes.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">High-speed laboratory computers</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Development, simulation and data analysis.</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Source: <a href="https://motion.stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">MOTION official website and laboratory inventory</a>. Equipment list and rental conditions must be reconfirmed with MOTION.</em></p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="software" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">5. Software and engineering resources</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Engineering toolchain</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">The published MOTION inventory references software and tools that may be useful for automotive software and hardware development.</p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Software / tool</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential Svashasan use</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">MATLAB</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Algorithm development and numerical analysis.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Simulink</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Vehicle dynamics and control-system modelling.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">CANoe</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive network simulation, analysis and testing.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">IAR / Keil</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Embedded firmware development.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">PCB design tools</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Hardware prototyping.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Hardware circuit simulation tools</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electronics design and analysis.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">NVIDIA DRIVE AGX</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive compute evaluation and deployment.</td></tr></tbody></table></div>
+<h2 id="proposed-three-layer-svashasan-engineering-environment" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Proposed three-layer Svashasan engineering environment</h2>
+<h3 id="layer-1-simulation" class="text-[16px] font-semibold text-gray-800 mb-3 mt-6">Layer 1: Simulation</h3>
+<p class="text-[16px] mb-4 leading-relaxed">CARLA + ROS 2 + RViz2 + automated scenario regression.</p>
+<p class="text-[16px] mb-2 text-center text-gray-500">↓</p>
+<h3 id="layer-2-automotive-compute" class="text-[16px] font-semibold text-gray-800 mb-3 mt-6">Layer 2: Automotive compute</h3>
+<p class="text-[16px] mb-4 leading-relaxed">NVIDIA DRIVE AGX + camera/radar/LiDAR + IMU/GNSS + embedded deployment.</p>
+<p class="text-[16px] mb-2 text-center text-gray-500">↓</p>
+<h3 id="layer-3-physical-validation" class="text-[16px] font-semibold text-gray-800 mb-3 mt-6">Layer 3: Physical validation</h3>
+<p class="text-[16px] mb-4 leading-relaxed">Automotive interfaces + CAN testing + sensor calibration + hardware performance measurement.</p>
+<p class="text-[16px] mb-4 leading-relaxed">This is a proposed Svashasan workflow, not a claim that MOTION supplies a pre-integrated end-to-end stack.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="support" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">6. What MOTION may provide beyond lab access</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Incubation value</em></p>
+<h2 id="1-physical-incubation" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">1. Physical incubation</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Plug-and-play workspace, ACES lab access, internet, NOC and advertised 24/7 workspace operations. Confirm the package and actual access conditions.</p>
+<h2 id="2-technical-and-business-mentorship" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">2. Technical and business mentorship</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Mentoring for POCs, prototypes, MVPs, product development, business models and go-to-market.</p>
+<h2 id="3-industry-connections" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">3. Industry connections</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Networking, roadshows, marketing, industry outreach and potential customer introductions.</p>
+<h2 id="4-intellectual-property-support" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">4. Intellectual property support</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Patent drafting and filing facilitation, trademark, copyright and related support through STPI's NRDC arrangement.</p>
+<h2 id="5-funding-and-investor-access" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">5. Funding and investor access</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Facilitation for grants, corporate funding, CSR, angels, HNIs, VCs and debt.</p>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Important:</strong> These are programme offerings and facilitation pathways, not guaranteed deliverables for every incubated company. Ask which services are active, included, chargeable and available to your stage.</blockquote>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="partners" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">7. Industry and institutional partner ecosystem</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Ecosystem</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION's published partner ecosystem has included organisations relevant to Svashasan's engineering and commercial roadmap. Their inclusion in the ecosystem does not mean that each partner has committed to work directly with every incubated startup.</p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Partner</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Why the relationship may matter</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential Svashasan ask</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Tata Motors</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive OEM and EV ecosystem.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Engineering evaluation pathway or referral to relevant vehicle software team.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Intel</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Semiconductor and computing ecosystem.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Embedded compute and software ecosystem engagement.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Visteon</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive cockpit electronics and connected-vehicle technology.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Vehicle electronics and software integration discussion.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">ARAI</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive research, testing and validation ecosystem.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Understand relevant test and validation pathways.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">MathWorks</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">MATLAB and Simulink engineering tools.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Modelling, simulation and control engineering support.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Kinetic Green</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Electric vehicle manufacturer.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">EV integration or demonstrator collaboration.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">COEP Technological University</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Engineering and academic ecosystem.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Research and engineering collaboration.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">SINE, IIT Bombay</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Startup ecosystem and entrepreneurial network.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Potential ecosystem and founder connections.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">SAEINDIA, TiE Pune, TiE Mumbai, NRDC</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive professional, business and IP networks.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Technical community, market access and IP facilitation.</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Ask MOTION:</strong> Which partners are actively engaging with startups? What introductions can be arranged? Are there defined joint programmes, technical office hours, pilot pathways or evaluation processes?</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="eligibility" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">8. Eligibility and commercial terms</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Admission and terms</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION's published eligibility conditions describe the following criteria. Svashasan's final eligibility must be confirmed by STPI against the current application policy and company documents.</p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Requirement</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Published condition</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Svashasan position / action</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Legal entity</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Private Limited, registered Partnership or LLP.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Svashasan Labs Private Limited; provide incorporation proof.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Incorporation age</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Not more than 10 years.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Appears to satisfy; verify incorporation date.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Annual turnover</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Not exceeding ₹100 crore in any financial year since incorporation.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Confirm from company accounts and filings.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Original entity</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Cannot be formed by splitting or reconstructing an existing business.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Verify and document company history.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Innovation</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Must develop or improve an innovative, scalable product/service/process.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Strong alignment with the vehicle OS and software-defined mobility proposition.</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION's published terms also describe an unregistered-startup route, subject to incorporation within three months of selection. This is not relevant if Svashasan is already incorporated.</p>
+<h2 id="commercial-terms-to-verify-and-negotiate" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Commercial terms to verify and negotiate</h2>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>₹2,500</strong> — Published incubation charge per seat per month, plus applicable taxes</blockquote>
+<p class="text-[16px] mb-4 leading-relaxed">This is the published figure referenced in the research. Confirm current rates, seat minimums, billing period and whether it applies to the proposed programme.</p>
+<p class="text-[16px] mb-4 leading-relaxed">The published terms state that the startup must offer equity to STPI/STPINEXT as decided and agreed upon. Do not assume incubation is free or equity-free.</p>
+<h2 id="eight-questions-before-signing" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Eight questions before signing</h2>
+<ol class="list-decimal pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>What exact equity percentage or instrument is applicable to this programme?</li><li>Is equity issued to STPI or STPINEXT, and what entity is the contracting party?</li><li>Does the per-seat charge apply to all incubated seats?</li><li>Is lab usage included in incubation fees?</li><li>Are there separate equipment access, consumables, maintenance or operator charges?</li><li>Does virtual incubation have different terms?</li><li>Does Svashasan retain ownership of all pre-existing patents, source code, architecture, models, data and background IP?</li><li>How is jointly developed foreground IP owned, licensed, protected and commercialised?</li></ol>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>IP protection is non-negotiable:</strong> Svashasan's OS architecture and vehicle software are core company assets. Do not accept broad IP assignment or unclear licensing provisions merely to access a laboratory.</blockquote>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="funding" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">9. Funding opportunities through STPI</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Financial support</em></p>
+<h2 id="a-funding-facilitation-through-motion" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">A. Funding facilitation through MOTION</h2>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION advertises facilitation and access to government grants, corporate funding, CSR, angel investors, HNIs, venture capital and debt financing. This is not a fixed grant entitlement and does not guarantee an investment or funding outcome.</p>
+<h2 id="b-next-generation-incubation-scheme-ngis" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">B. Next Generation Incubation Scheme (NGIS)</h2>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Published maximum seed funding: ₹25 lakh</strong> — Per selected beneficiary startup, subject to scheme eligibility, selection and evaluation.</blockquote>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Support component</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Published provision / description</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Seed funding</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Up to ₹25 lakh.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Pre-incubation</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Up to six months.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Pre-incubation stipend</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">₹10,000 per month (as published in scheme material).</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Cloud credits</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Access to eligible cloud-provider credits.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Security testing</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Software Product Security Testing support.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Incubation</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Plug-and-play workspace.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Other support</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Mentoring, IPR, VC access and market connect.</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed">The published NGIS programme describes a budget of ₹95.03 crore over three years and a target of 300 selected startups. Treat these as scheme-publication figures and verify current status, remaining allocation, application windows and current guidelines.</p>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Published NGIS centre locations:</strong> Agartala, Bhilai, Bhopal, Bhubaneswar, Dehradun, Guwahati, Jaipur, Lucknow, Prayagraj, Mohali, Patna and Vijayawada. Pune was not included in the published list reviewed for this briefing.</p>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Critical distinction:</strong> MOTION admission does not automatically qualify Svashasan for NGIS funding. NGIS is a separate scheme with its own participating centres and selection process. Ask MOTION whether it can refer Svashasan to an eligible NGIS centre and whether applications are currently open.</blockquote>
+<h2 id="illustrative-use-of-a-25-lakh-grant" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Illustrative use of a ₹25 lakh grant</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Proposed allocation</th><th class="text-right font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Amount</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive compute and hardware integration</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹8 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Sensor integration and calibration</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹4 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Embedded OS and middleware development</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹4 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Simulation and validation infrastructure</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹3 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Cybersecurity and OTA prototype</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹3 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Technical documentation and testing</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹2 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Contingency</td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top">₹1 lakh</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><strong>Total</strong></td><td class="text-right px-3 py-2 border-b border-[#d9d2c5] align-top"><strong>₹25 lakh</strong></td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed"><em>This is a proposed planning allocation, not an approved NGIS budget or confirmed list of eligible expenses. Confirm scheme-specific expenditure rules before committing funds.</em></p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="roadmap" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">10. Proposed Svashasan–MOTION development roadmap</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Product execution</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">Use MOTION as the physical engineering and validation environment for the transition from simulation to embedded automotive hardware. The estimates below are suggested workstream durations, not STPI programme timelines; workstreams may overlap.</p>
+<h2 id="stage-1-hardware-bring-up" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Stage 1: Hardware bring-up (3–4 weeks)</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Secure NVIDIA DRIVE AGX access and confirm supported software stack.</li><li>Establish Linux/embedded runtime compatibility.</li><li>Bring up camera, radar, LiDAR and IMU/GNSS.</li><li>Verify sensor timestamps, data rates and interfaces.</li><li>Establish hardware performance baselines.</li></ul>
+<h2 id="stage-2-perception-and-sensor-fusion" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Stage 2: Perception and sensor fusion (4–6 weeks)</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Deploy camera detection and radar processing.</li><li>Integrate sensor fusion and localization.</li><li>Measure end-to-end perception latency.</li><li>Record accuracy, false positives/negatives and scenario coverage.</li></ul>
+<h2 id="stage-3-os-integration" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Stage 3: OS integration (4–6 weeks)</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Integrate autonomy modules into Svashasan OS.</li><li>Implement hardware abstraction and standardised ROS 2/vehicle service interfaces.</li><li>Add health monitoring, resource management and process supervision.</li><li>Define the safety supervisor boundary and command-authority controls.</li></ul>
+<h2 id="stage-4-vehicle-integration-and-ota" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Stage 4: Vehicle integration and OTA (3–4 weeks)</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Test CAN communication and vehicle-state interfaces.</li><li>Build an OTA demonstrator with signature verification, rollback and failure recovery.</li><li>Define secure update and cybersecurity tests.</li><li>Engage QNu Labs for the specifically agreed cryptographic scope.</li></ul>
+<h2 id="stage-5-validation-and-oem-demonstration" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Stage 5: Validation and OEM demonstration (3–4 weeks)</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Run repeatable simulation and hardware tests.</li><li>Document performance, limitations and failure scenarios.</li><li>Prepare an engineering demonstration and evidence pack.</li><li>Seek OEM engineering evaluation and, where appropriate, a non-binding LOI.</li></ul>
+<h2 id="expected-programme-outputs" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Expected programme outputs</h2>
+<ol class="list-decimal pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Reproducible embedded deployment of Svashasan OS.</li><li>Documented automotive hardware compatibility matrix.</li><li>Working sensor integration pipeline.</li><li>Measured perception and localization benchmarks.</li><li>Functioning OTA update demonstrator.</li><li>Technical validation report.</li><li>OEM-oriented integration architecture and demonstration package.</li></ol>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="compliance" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">11. Standards and compliance roadmap</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Safety and compliance</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION is an incubation and engineering facility, not an automotive certification authority. Its ecosystem may help Svashasan build evidence and relationships for eventual automotive qualification.</p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Standard / framework</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Why Svashasan needs it</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Potential contribution of the ecosystem</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">ISO 26262</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Functional safety for road vehicles.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Engineering mentorship, specialist referrals and relevant testing ecosystem.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">ISO 21448 (SOTIF)</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Safety of intended functionality, including perception limitations and foreseeable misuse.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Scenario testing and perception validation support.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">ISO/SAE 21434</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Road-vehicle cybersecurity engineering.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Cybersecurity expertise and architecture review referrals.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">ISO 24089</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Software update engineering.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">OTA engineering and process testing.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">UNECE R155</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Vehicle cybersecurity management system requirements.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Industry and specialist connections.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">UNECE R156</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Software update management system requirements.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">OTA process and evidence development.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">SAE J3016</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Taxonomy and definitions for driving automation.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Define and document actual automation capabilities and responsibilities.</td></tr></tbody></table></div>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Do not conflate incubation with certification.</strong> ISO 26262 certification, UNECE R155/R156 vehicle compliance and ARAI testing are not automatically provided through incubation. Svashasan must establish applicable requirements, evidence and independent assessment arrangements with appropriate specialists and OEMs.</blockquote>
+<h2 id="near-term-evidence-to-build" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Near-term evidence to build</h2>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li>Safety requirements, traceability and hazard analysis/risk assessment.</li><li>SOTIF scenario catalogue and limitations documentation.</li><li>Software bill of materials (SBOM) and vulnerability management.</li><li>Secure boot, key management and access-control design.</li><li>OTA failure recovery, rollback and update integrity evidence.</li><li>Repeatable validation reports and regression results.</li></ul>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="costs" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">12. Cost and access model</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Cost planning</em></p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Service</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Published information</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">What to confirm</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Incubation seat</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">₹2,500 + applicable taxes per seat/month (published reference).</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Current tariff, minimum seats, contract period.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Lab equipment rental</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Separate tariff-based access.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Equipment-specific hourly/day rates, operator and consumable charges.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Office infrastructure</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Separate service / rental arrangement.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Availability and inclusions.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Co-working</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Separate service / rental arrangement.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Seat availability and access rules.</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Virtual incubation</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Offered as a service.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Eligibility, benefits and pricing.</td></tr></tbody></table></div>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Recommended negotiation:</strong> Request a structured laboratory-access package rather than paying for multiple seats before the equipment requirements are clear.</p>
+<p class="text-[16px] mb-4 leading-relaxed">Ask whether the following can be bundled: two or three engineering seats; scheduled automotive compute access; scheduled radar, LiDAR and camera access; CAN and embedded tool access; technical support during initial bring-up; and permission to demonstrate the prototype to prospective OEMs.</p>
+<p class="text-[16px] mb-4 leading-relaxed">Get written terms for equipment access, usage rights, confidentiality, data ownership, IP ownership, publication rights and restrictions on external demonstrations.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="apply" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">13. How to apply to MOTION</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Application</em></p>
+<h2 id="motion-coe-pune" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">MOTION CoE – Pune</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Official website and application route</p>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li><a href="https://motion.stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">motion.stpi.in</a></li><li><a href="https://motion.stpi.in/apply.php" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">Startup application portal</a></li><li><strong>Email:</strong> motion@stpi.in</li><li><strong>Phone:</strong> 020-27126616 (Bhosari facility)</li><li><strong>Address:</strong> Ground Floor, Electronic Sadan-III, MIDC, Bhosari, Pune – 411026.</li></ul>
+<p class="text-[16px] mb-4 leading-relaxed"><em>The application page is published, but the current availability of a fresh application window should be confirmed with the CoE before submission. Contact details and programme terms can change.</em></p>
+<h2 id="application-preparation-checklist" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Application preparation checklist</h2>
+<p class="text-[16px] mb-4 leading-relaxed"><strong>Readiness tracker</strong> · <span id="count">0 / 13 ready</span></p>
+<div class="h-1.5 bg-[#d9d2c5] rounded-full overflow-hidden mb-4"><span id="bar" class="block h-full w-0 bg-gray-800 transition-all duration-200"></span></div>
+<div id="checks" class="mb-4 text-[16px] leading-relaxed"></div>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="positioning" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">14. How Svashasan should position itself</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Selection strategy</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">Do not approach MOTION as a startup seeking free office space or generic incubation. Approach it as an automotive software company seeking a specialised engineering and validation environment.</p>
+<h2 id="recommended-application-positioning" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Recommended application positioning</h2>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Svashasan OS – Automotive Software Infrastructure for Software-Defined Mobility</strong></blockquote>
+<p class="text-[16px] mb-4 leading-relaxed">Svashasan Labs is developing a modular, hardware-agnostic operating system for electric and software-defined vehicles, integrating vehicle abstraction, perception, sensor fusion, autonomy workloads, connected-vehicle services, OTA infrastructure and vehicle lifecycle management.</p>
+<p class="text-[16px] mb-4 leading-relaxed">Having developed a simulation MVP using CARLA and ROS 2, we are progressing towards physical automotive compute integration and controlled-environment validation.</p>
+<p class="text-[16px] mb-4 leading-relaxed">We intend to leverage MOTION's ACES infrastructure to accelerate embedded deployment, sensor integration, automotive networking, hardware benchmarking and OEM-oriented product validation.</p>
+<p class="text-[16px] mb-4 leading-relaxed">Our objective is to establish a repeatable automotive software platform that OEMs can evaluate and integrate into their next-generation vehicle architectures.</p>
+<p class="text-[16px] mb-4 leading-relaxed"><button id="copy-position" class="px-3 py-1.5 rounded-full border border-[#d9d2c5] text-xs text-gray-700 hover:bg-gray-100 transition-all duration-300">Copy positioning statement</button></p>
+<h2 id="five-specific-requests-for-the-selection-meeting" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Five specific requests for the selection meeting</h2>
+<ol class="list-decimal pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li><strong>Automotive compute access:</strong> NVIDIA DRIVE AGX access, supported software versions, deployment permissions and usage availability.</li><li><strong>Physical vehicle integration:</strong> Access to a test vehicle or demonstrator, or introductions to organisations that can provide one.</li><li><strong>Technical validation:</strong> Help arranging an evaluation pathway with ARAI and relevant testing partners.</li><li><strong>OEM access:</strong> Introductions to engineering teams at Tata Motors, Kinetic Green, Visteon and other relevant ecosystem participants.</li><li><strong>Funding support:</strong> Guidance on grants, NGIS referrals and investor introductions.</li></ol>
+<p class="text-[16px] mb-4 leading-relaxed">Do not make all five conditions for joining. Prioritise compute access, physical vehicle integration and validation pathways because they directly affect product development.</p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="other-centres" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">15. Other STPI centres worth knowing</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Wider STPI network</em></p>
+<p class="text-[16px] mb-4 leading-relaxed">MOTION should remain the primary target. Other CoEs may offer complementary capabilities, but avoid splitting the engineering team across centres before a core hardware-validation workflow is established.</p>
+<h2 id="iot-openlab-bengaluru" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">IoT OpenLab · Bengaluru</h2>
+<p class="text-[16px] mb-4 leading-relaxed">IoT and electronics prototyping, test equipment and communication modules. Potentially useful for connected-vehicle and sensor-interface development.</p>
+<h2 id="neuron-mohali" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">NEURON · Mohali</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Data analytics and related technology incubation. Potentially relevant to fleet intelligence and vehicle data analytics.</p>
+<h2 id="image-hyderabad" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">IMAGE · Hyderabad</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Gaming, VFX, computer vision and AI-related capabilities. Potentially relevant to perception development and visual computing.</p>
+<h2 id="ngis-centres" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">NGIS centres</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Agartala, Bhilai, Bhopal, Bhubaneswar, Dehradun, Guwahati, Jaipur, Lucknow, Prayagraj, Mohali, Patna and Vijayawada, according to the published list reviewed.</p>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Confirm the current names, focus areas, facilities and programme status directly with STPI. Centre offerings and scheme participation can change.</em></p>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="assessment" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">16. Strategic assessment and immediate action plan</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Decision and execution</em></p>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Evaluation parameter</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Assessment</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Product-domain alignment</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><strong>Excellent</strong></td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive hardware access</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><strong>Excellent potential</strong></td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Embedded systems development</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Strong</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Autonomous vehicle development</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Strong</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">EV hardware development</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Strong</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">OEM ecosystem access</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Valuable potential</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">IP support</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Valuable</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Funding access</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Useful, not guaranteed</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Direct grant availability</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><em>Separate confirmation required</em></td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Automotive certification</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><em>Not guaranteed</em></td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Strategic product-development value</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top"><strong>Very high</strong></td></tr></tbody></table></div>
+<h2 id="immediate-action-plan" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Immediate action plan</h2>
+<div class="overflow-x-auto mb-6"><table class="w-full text-[16px] border-collapse"><thead><tr><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Priority</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Action</th><th class="text-left font-semibold text-gray-800 px-3 py-2 border-b border-[#d9d2c5]">Target timeline</th></tr></thead><tbody><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P0</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Contact MOTION and request an incubation meeting.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Within 48 hours</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P0</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Request a physical tour of the Bhosari laboratory.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Within 1 week</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P0</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Obtain equipment availability and tariff sheets.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Within 1 week</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P0</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Submit incubation application after confirming terms.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">After initial discussion</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P1</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Present a technical hardware utilisation plan.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">During evaluation</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P1</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Discuss OEM and ARAI introductions.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">During evaluation</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P1</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Explore NGIS eligibility and referral.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">During evaluation</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P2</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Negotiate incubation and IP terms.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Before signing</td></tr><tr><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">P2</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">Establish a 90-day engineering programme.</td><td class="text-left px-3 py-2 border-b border-[#d9d2c5] align-top">After acceptance</td></tr></tbody></table></div>
+<h2 id="capital-efficiency-strategy" class="text-[18px] font-semibold text-gray-800 mb-3 mt-6">Capital-efficiency strategy</h2>
+<p class="text-[16px] mb-4 leading-relaxed">Use MOTION as an alternative to purchasing expensive automotive development equipment immediately. First establish whether it can provide practical access to the compute, sensors and testing equipment required. Then reserve Svashasan's capital for what the incubator cannot provide: core engineering salaries, proprietary OS development, IP protection, software integration, independent validation and OEM-specific engineering.</p>
+<blockquote class="border-l-4 border-gray-800 pl-4 my-5 text-[16px] leading-relaxed text-gray-800 italic"><strong>Bottom line:</strong> Pursue MOTION with one clear objective: secure the infrastructure and industry support needed to make Svashasan OS demonstrable on actual automotive hardware, without unnecessarily diluting the company or buying expensive equipment upfront. Laboratory access is not ownership or unrestricted use—obtain written access, usage, confidentiality, data and IP terms.</blockquote>
+<hr class="border-[#d9d2c5] my-8">
+<h1 id="sources" class="text-[22px] font-bold text-gray-800 mb-6 mt-10">17. Official resources and verification</h1>
+<p class="text-[16px] mb-4 leading-relaxed"><em>References</em></p>
+<ul class="list-disc pl-6 mb-4 text-[16px] leading-relaxed space-y-1"><li><a href="https://stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">STPI – official website</a></li><li><a href="https://motion.stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">MOTION CoE – Pune</a></li><li><a href="https://motion.stpi.in/apply.php" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">MOTION startup application portal</a></li><li><a href="https://stpi.in/" target="_blank" rel="noopener" class="underline underline-offset-2 text-gray-800 hover:text-gray-600">STPI – NGIS and programme information</a> (navigate to current scheme page and guidelines)</li></ul>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Research note: This document organises the STPI/MOTION findings and strategic recommendations from the preceding research response. Published equipment, tariffs, eligibility, partner lists, NGIS funding limits, centre locations and application windows can change. Treat them as research references, not contractual commitments. Obtain current written confirmation from STPI/MOTION before budgeting, applying or signing agreements.</em></p>
+<p class="text-[16px] mb-4 leading-relaxed"><em>Internal strategic research document · Prepared for product development and incubation planning.</em></p>
+        </div>
+    </main>
+    </div>
+
+  <!-- Footer -->
+  <footer style="background: #ffffff; border-top: 1px solid #f3f4f6; margin-top: 64px; padding: 40px 20px; color: #6b7280; font-size: 0.85rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 40px;">
+        <div>
+          <h5 style="font-weight: 650; color: #0b0b0b; margin-bottom: 12px; font-size: 0.9rem;">Research</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li><a href="index.html" style="color: inherit; text-decoration: none;">Research Overview</a></li>
+            <li><a href="index (2).html" style="color: inherit; text-decoration: none;">Moving Turns</a></li>
+            <li><a href="heuristic.html" style="color: inherit; text-decoration: none;">Heuristic Baseline</a></li>
+            <li><a href="absence.html" style="color: inherit; text-decoration: none;">Evidence of Absence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="font-weight: 650; color: #0b0b0b; margin-bottom: 12px; font-size: 0.9rem;">Company</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li><a href="https://svashasan.com/" style="color: inherit; text-decoration: none;">About Svashasan</a></li>
+            <li><a href="https://svashasan.com/research/" style="color: inherit; text-decoration: none;">Research Portal</a></li>
+            <li><a href="mailto:namaste@svashasan.com" style="color: inherit; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="font-weight: 650; color: #0b0b0b; margin-bottom: 12px; font-size: 0.9rem;">Resources</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li><a href="https://svashasan.com/support" style="color: inherit; text-decoration: none;">Developer Documentation</a></li>
+            <li><a href="#" style="color: inherit; text-decoration: none;">API Docs</a></li>
+            <li><a href="#" style="color: inherit; text-decoration: none;">Getting Started</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #f3f4f6; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>© 2026 Svashasan Labs. All Rights Reserved.</div>
+        <div style="display: flex; gap: 20px; font-size: 0.8rem;">
+          <a href="https://svashasan.com/privacy-policy" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+          <span>|</span>
+          <a href="https://svashasan.com/terms-of-use" style="color: inherit; text-decoration: none;">Terms & Conditions</a>
+          <span>|</span>
+          <a href="https://svashasan.com/cookie-policy" style="color: inherit; text-decoration: none;">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // Scrollspy for left navigation
+  const navLinks = document.querySelectorAll('#toc .nav-link');
+  const sections = Array.from(navLinks).map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`#toc .nav-link[href="#${id}"]`);
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Search functionality
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const headings = Array.from(document.querySelectorAll('main h1, main h2, main h3')).filter(h => h.id);
+
+  // Build a searchable index: for each section (heading), collect all text content beneath it
+  const searchIndex = [];
+  headings.forEach((heading, i) => {
+    const nextHeading = headings[i + 1];
+    let contentText = '';
+    let node = heading.nextElementSibling;
+    while (node && node !== nextHeading) {
+      contentText += ' ' + node.textContent;
+      node = node.nextElementSibling;
+    }
+    searchIndex.push({
+      id: heading.id,
+      title: heading.textContent.trim(),
+      content: contentText.trim(),
+    });
+  });
+
+  function getSnippet(text, query, maxLen) {
+    const lower = text.toLowerCase();
+    const idx = lower.indexOf(query);
+    if (idx === -1) return '';
+    const start = Math.max(0, idx - 40);
+    const end = Math.min(text.length, idx + query.length + 60);
+    let snippet = (start > 0 ? '…' : '') + text.slice(start, end).trim() + (end < text.length ? '…' : '');
+    // highlight the matched term
+    const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    snippet = snippet.replace(regex, '<mark class="bg-yellow-200 rounded px-0.5">$1</mark>');
+    return snippet;
+  }
+
+  function handleGlobalSearch(value) {
+    const query = value.trim().toLowerCase();
+    if (query.length < 2) {
+      searchResults.classList.add('hidden');
+      searchResults.innerHTML = '';
+      return;
+    }
+
+    const results = [];
+    searchIndex.forEach(entry => {
+      const titleMatch = entry.title.toLowerCase().includes(query);
+      const contentMatch = entry.content.toLowerCase().includes(query);
+      if (titleMatch || contentMatch) {
+        const snippet = contentMatch ? getSnippet(entry.content, query, 120) : '';
+        results.push({ id: entry.id, title: entry.title, snippet, titleMatch });
+      }
+    });
+
+    // Sort: title matches first, then content matches
+    results.sort((a, b) => (b.titleMatch ? 1 : 0) - (a.titleMatch ? 1 : 0));
+
+    const top = results.slice(0, 12);
+
+    if (top.length === 0) {
+      searchResults.innerHTML = '<div class="px-4 py-3 text-xs text-gray-400">No results found.</div>';
+      searchResults.classList.remove('hidden');
+      return;
+    }
+
+    searchResults.innerHTML = top.map(r =>
+      `<a href="#${r.id}" class="search-result-link block px-4 py-2 text-xs text-brandBlack hover:bg-gray-100 border-b border-gray-50 last:border-0">
+        <div class="font-semibold">${r.title}</div>
+        ${r.snippet ? '<div class="text-[11px] text-gray-500 mt-0.5 leading-snug">' + r.snippet + '</div>' : ''}
+      </a>`
+    ).join('');
+    searchResults.classList.remove('hidden');
+  }
+
+  // Make handleGlobalSearch available globally for the inline oninput attribute
+  window.handleGlobalSearch = handleGlobalSearch;
+
+  // Close dropdown and clear input when clicking a result
+  searchResults.addEventListener('click', (e) => {
+    const link = e.target.closest('.search-result-link');
+    if (link) {
+      searchResults.classList.add('hidden');
+      searchInput.value = '';
+    }
+  });
+
+  // Hide results when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.classList.add('hidden');
+    }
+  });
+
+  // Keyboard navigation
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchResults.classList.add('hidden');
+      searchInput.value = '';
+      searchInput.blur();
+    }
+  });
+</script>
+
+<script>
+  // Application readiness checklist
+  const checklistItems = ["Certificate of Incorporation and CIN","DPIIT Startup India recognition certificate","Company PAN and GST details, if applicable","Company profile and founder profiles","Svashasan OS product presentation","System architecture documentation","Simulation MVP demonstration video","CARLA + ROS 2 technical documentation","Existing patent filing details and IP ownership records","Current product development roadmap","Business model and financial projections","Detailed laboratory and equipment requirements","Funding and resource utilisation plan"];
+  const checks = document.getElementById('checks');
+  checklistItems.forEach((t, i) => {
+    const label = document.createElement('label');
+    label.className = 'flex items-start gap-3 py-2 border-b border-[#d9d2c5] cursor-pointer';
+    label.innerHTML = `<input type="checkbox" data-i="${i}" class="mt-1.5 accent-gray-800"><span>${t}</span>`;
+    checks.appendChild(label);
+  });
+  checks.addEventListener('change', () => {
+    const n = checks.querySelectorAll('input:checked').length;
+    document.getElementById('count').textContent = `${n} / ${checklistItems.length} ready`;
+    document.getElementById('bar').style.width = (n / checklistItems.length * 100) + '%';
+  });
+
+  // Copy positioning statement
+  document.getElementById('copy-position').addEventListener('click', async () => {
+    const text = "Svashasan OS – Automotive Software Infrastructure for Software-Defined Mobility\n\nSvashasan Labs is developing a modular, hardware-agnostic operating system for electric and software-defined vehicles, integrating vehicle abstraction, perception, sensor fusion, autonomy workloads, connected-vehicle services, OTA infrastructure and vehicle lifecycle management.\n\nHaving developed a simulation MVP using CARLA and ROS 2, we are progressing towards physical automotive compute integration and controlled-environment validation.\n\nWe intend to leverage MOTION's ACES infrastructure to accelerate embedded deployment, sensor integration, automotive networking, hardware benchmarking and OEM-oriented product validation.\n\nOur objective is to establish a repeatable automotive software platform that OEMs can evaluate and integrate into their next-generation vehicle architectures.";
+    const btn = document.getElementById('copy-position');
+    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+    catch (e) { btn.textContent = 'Copy unavailable'; }
+  });
+</script>
+
+</body>
+</html>
